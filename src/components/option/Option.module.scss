@@ -1,0 +1,27 @@
+.option {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  color: rgba(96, 102, 208, 0.8);
+  cursor: pointer;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  height: 56px;
+  padding: 15px 20px;
+  width: 100%;
+
+  &:active {
+    color: #ffffff;
+    background-color: #f9a826;
+    border: 2px solid #f9a826;
+  }
+
+  &__key {
+    display: inline-block;
+    margin-right: 45px;
+    text-transform: uppercase;
+  }
+}
