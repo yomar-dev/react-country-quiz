@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './Game.module.scss';
 
 import Option from 'components/option/Option';
 import { ReactComponent as AdventureImage } from 'assets/adventure.svg';
 
-const options = [
-  { key: 'a', value: 'Vietnam' },
-  { key: 'b', value: 'Malaysia' },
-  { key: 'c', value: 'Sweden' },
-  { key: 'd', value: 'Austria' },
-];
+import { getRandomCountries, generateAnswer } from 'helpers/quiz';
 
-const Game = () => {
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+const Game = ({ countries }) => {
+  const [options, setOptions] = useState([]);
+  const [answer, setAnswer] = useState({});
+
+  useEffect(() => {
+    setOptions(getRandomCountries([...countries]));
+  }, [countries]);
+
+  useEffect(() => {
+    setAnswer(generateAnswer([...options]));
+  }, [options]);
+
+  if (!options || !answer) {
+    return <section className={styles.card}>Loading...</section>;
+  }
+
   return (
     <section className={styles.card}>
-      <h2 className={styles.card__title}>Kuala Lumpur is the capital of</h2>
+      <h2 className={styles.card__title}>{answer.capital} is the capital of</h2>
 
       {options.map((option, index) => (
-        <div className={styles.card__option}>
-          <Option key={index} letter={option.key} value={option.value} />
+        <div className={styles.card__option} key={option.country}>
+          <Option letter={LETTERS[index]} option={option} />
         </div>
       ))}
 
