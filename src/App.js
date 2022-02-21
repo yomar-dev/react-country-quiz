@@ -21,6 +21,9 @@ function App() {
             };
           });
         setCountries(transformedCountries);
+      })
+      .catch((error) => {
+        console.log('error =>', error);
       });
   }, []);
 
@@ -28,7 +31,7 @@ function App() {
     <main className={styles.main}>
       <div className={styles.container}>
         <h1 className={styles.container__title}>Country quiz</h1>
-        {countries && <Game countries={countries} />}
+        {countries.length && <Game countries={countries} />}
       </div>
     </main>
   );
