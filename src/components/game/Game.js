@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 import styles from './Game.module.scss';
 
-import Option from 'components/option/Option';
-import { ReactComponent as AdventureImage } from 'assets/adventure.svg';
+import Result from 'components/result/Result';
+import Question from 'components/question/Question';
 
 import { getRandomCountries, generateAnswer } from 'helpers/quiz';
-
-const LETTERS = ['A', 'B', 'C', 'D'];
 
 const Game = ({ countries }) => {
   const [options, setOptions] = useState([]);
   const [answer, setAnswer] = useState({});
+  const [answerCounter, setAnswerCounter] = useState(0);
+  const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
+  const [endGame, setEndGame] = useState(false);
 
   useEffect(() => {
     setOptions(getRandomCountries([...countries]));
@@ -21,24 +22,42 @@ const Game = ({ countries }) => {
     setAnswer(generateAnswer([...options]));
   }, [options]);
 
+  const generateNewQuestion = () => {
+    setAnswerIsCorrect(false);
+    setOptions(getRandomCountries([...countries]));
+  };
+
+  const handlerSelectedOption = (option) => {
+    if (option.country === answer.country) {
+      setAnswerCounter((prevState) => prevState + 1);
+      setAnswerIsCorrect(true);
+    } else {
+      setEndGame(true);
+    }
+  };
+
+  const resetGameHandler = () => {
+    setEndGame(false);
+    setAnswerCounter(0);
+    generateNewQuestion();
+  };
+
   if (!options || !answer) {
     return <section className={styles.card}>Loading...</section>;
   }
 
+  if (endGame) {
+    return <Result score={answerCounter} onResetGame={resetGameHandler} />;
+  }
+
   return (
-    <section className={styles.card}>
-      <h2 className={styles.card__title}>{answer.capital} is the capital of</h2>
-
-      {options.map((option, index) => (
-        <div className={styles.card__option} key={option.country}>
-          <Option letter={LETTERS[index]} option={option} />
-        </div>
-      ))}
-
-      <picture className={styles.card__image}>
-        <AdventureImage />
-      </picture>
-    </section>
+    <Question
+      options={options}
+      answer={answer}
+      answerIsCorrect={answerIsCorrect}
+      onValidateAnswer={handlerSelectedOption}
+      onGenerateNewQuestion={generateNewQuestion}
+    />
   );
 };
 
