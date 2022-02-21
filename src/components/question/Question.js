@@ -8,6 +8,10 @@ import { ReactComponent as AdventureImage } from 'assets/adventure.svg';
 const LETTERS = ['A', 'B', 'C', 'D'];
 
 const Question = ({ options, answer, onSelectedOption }) => {
+  const handleNextQuestion = () => {
+    console.log('Next question');
+  };
+
   return (
     <section className={styles.card}>
       <h2 className={styles.card__title}>{answer.capital} is the capital of</h2>
@@ -21,6 +25,10 @@ const Question = ({ options, answer, onSelectedOption }) => {
           />
         </div>
       ))}
+
+      <button className={styles.card__button} onClick={handleNextQuestion}>
+        Next
+      </button>
 
       <picture className={styles.card__image}>
         <AdventureImage />
