@@ -7,11 +7,13 @@ import { ReactComponent as AdventureImage } from 'assets/adventure.svg';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
-const Question = ({ options, answer, onSelectedOption }) => {
-  const handleNextQuestion = () => {
-    console.log('Next question');
-  };
-
+const Question = ({
+  options,
+  answer,
+  answerIsCorrect,
+  onValidateAnswer,
+  onGenerateNewQuestion,
+}) => {
   return (
     <section className={styles.card}>
       <h2 className={styles.card__title}>{answer.capital} is the capital of</h2>
@@ -21,12 +23,16 @@ const Question = ({ options, answer, onSelectedOption }) => {
           <Option
             letter={LETTERS[index]}
             option={option}
-            onSelectedOption={onSelectedOption}
+            onSelectedOption={onValidateAnswer}
           />
         </div>
       ))}
 
-      <button className={styles.card__button} onClick={handleNextQuestion}>
+      <button
+        className={styles.card__button}
+        disabled={!answerIsCorrect}
+        onClick={onGenerateNewQuestion}
+      >
         Next
       </button>
 
