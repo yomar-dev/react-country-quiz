@@ -10,6 +10,7 @@ import { getRandomCountries, generateAnswer } from 'helpers/quiz';
 const Game = ({ countries }) => {
   const [options, setOptions] = useState([]);
   const [answer, setAnswer] = useState({});
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [answerCounter, setAnswerCounter] = useState(0);
   const [answerIsCorrect, setAnswerIsCorrect] = useState(false);
   const [endGame, setEndGame] = useState(false);
@@ -28,6 +29,7 @@ const Game = ({ countries }) => {
   };
 
   const handlerSelectedOption = (option) => {
+    setSelectedAnswer(option);
     if (option.country === answer.country) {
       setAnswerCounter((prevState) => prevState + 1);
       setAnswerIsCorrect(true);
@@ -39,6 +41,7 @@ const Game = ({ countries }) => {
   const resetGameHandler = () => {
     setEndGame(false);
     setAnswerCounter(0);
+    setSelectedAnswer(null);
     generateNewQuestion();
   };
 
@@ -54,6 +57,7 @@ const Game = ({ countries }) => {
     <Question
       options={options}
       answer={answer}
+      selectedAnswer={selectedAnswer}
       answerIsCorrect={answerIsCorrect}
       onValidateAnswer={handlerSelectedOption}
       onGenerateNewQuestion={generateNewQuestion}

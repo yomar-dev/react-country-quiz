@@ -10,6 +10,7 @@ const LETTERS = ['A', 'B', 'C', 'D'];
 const Question = ({
   options,
   answer,
+  selectedAnswer,
   answerIsCorrect,
   onValidateAnswer,
   onGenerateNewQuestion,
@@ -23,6 +24,9 @@ const Question = ({
           <Option
             letter={LETTERS[index]}
             option={option}
+            answer={answer}
+            selectedAnswer={selectedAnswer}
+            answerIsCorrect={answerIsCorrect}
             onSelectedOption={onValidateAnswer}
           />
         </div>
