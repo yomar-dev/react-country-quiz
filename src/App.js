@@ -4,7 +4,7 @@ import Game from './components/game/Game';
 import styles from './App.module.scss';
 
 function App() {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState(null);
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
@@ -30,8 +30,14 @@ function App() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1 className={styles.container__title}>Country quiz</h1>
-        {countries.length && <Game countries={countries} />}
+        {!countries ? (
+          <p className={styles.container__loading}>Loading...</p>
+        ) : (
+          <>
+            <h1 className={styles.container__title}>Country quiz</h1>
+            <Game countries={countries} />
+          </>
+        )}
       </div>
     </main>
   );

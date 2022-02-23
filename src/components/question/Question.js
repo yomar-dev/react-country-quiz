@@ -26,7 +26,9 @@ const Question = ({ options, answer, onValidateAnswer }) => {
 
   return (
     <section className={styles.card}>
-      <h2 className={styles.card__title}>{answer.capital} is the capital of</h2>
+      <h2 className={styles.card__title}>
+        {answer?.capital} is the capital of
+      </h2>
 
       {options.map((option, index) => (
         <div className={styles.card__option} key={option.country}>

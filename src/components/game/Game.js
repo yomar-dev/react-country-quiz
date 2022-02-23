@@ -40,10 +40,6 @@ const Game = ({ countries }) => {
     generateNewQuestion();
   };
 
-  if (!options || !answer) {
-    return <section className={styles.card}>Loading...</section>;
-  }
-
   if (endGame) {
     return <Result score={answerCounter} onResetGame={resetGameHandler} />;
   }
