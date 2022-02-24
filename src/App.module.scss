@@ -4,11 +4,13 @@
   align-items: center;
   flex-direction: column;
   min-height: calc(100vh - 40px);
+  padding: 20px;
 }
 
 .container {
   font-family: 'Poppins', sans-serif;
   width: 464px;
+  max-width: 100%;
 
   &__title {
     color: #f2f2f2;
