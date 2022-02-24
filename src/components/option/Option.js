@@ -36,8 +36,10 @@ const Option = ({
     >
       <p className={styles.option__content}>
         <span className={styles.option__key}>{letter}</span>
-        {option.country}
-        <span className="material-icons">{icon}</span>
+        <span className={styles.option__country}>{option.country}</span>
+        <span className={`${styles.option__icon} ${'material-icons'}`}>
+          {icon}
+        </span>
       </p>
     </button>
   );
