@@ -25,6 +25,12 @@
     text-transform: uppercase;
   }
 
+  &__content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &--is-correct {
     background-color: #60bf88;
     border: 2px solid #60bf88;

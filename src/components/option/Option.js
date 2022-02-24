@@ -31,8 +31,10 @@ const Option = ({
       onClick={() => onSelectedOption(option)}
       disabled={disabled}
     >
-      <span className={styles.option__key}>{letter}</span>
-      <span className={styles.option__value}>{option.country}</span>
+      <p className={styles.option__content}>
+        <span className={styles.option__key}>{letter}</span>
+        {option.country}
+      </p>
     </button>
   );
 };
