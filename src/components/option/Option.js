@@ -10,11 +10,13 @@ const Option = ({
   selectedAnswer,
   onSelectedOption,
 }) => {
+  let icon = '';
   let optionClasses = `${styles.option}`;
 
   if (selectedAnswer) {
     if (answer.country === option.country) {
       optionClasses += ` ${styles['option--is-correct']}`;
+      icon = 'check_circle';
     }
 
     if (
@@ -22,6 +24,7 @@ const Option = ({
       selectedAnswer.country !== answer.country
     ) {
       optionClasses += ` ${styles['option--is-incorrect']}`;
+      icon = 'highlight_off';
     }
   }
 
@@ -34,6 +37,7 @@ const Option = ({
       <p className={styles.option__content}>
         <span className={styles.option__key}>{letter}</span>
         {option.country}
+        <span className="material-icons">{icon}</span>
       </p>
     </button>
   );
