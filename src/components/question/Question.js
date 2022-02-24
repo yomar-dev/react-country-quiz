@@ -27,7 +27,10 @@ const Question = ({ options, answer, onValidateAnswer }) => {
   return (
     <section className={styles.card}>
       <h2 className={styles.card__title}>
-        {answer?.capital} is the capital of
+        <span className={styles['card__title--highlight']}>
+          {answer?.capital}
+        </span>{' '}
+        is the capital of
       </h2>
 
       {options.map((option, index) => (

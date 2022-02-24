@@ -13,6 +13,10 @@
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
+
+    &--highlight {
+      color: rgba(96, 102, 208, 0.8);
+    }
   }
 
   &__option {
