@@ -1,11 +1,13 @@
-export function getRandomCountries(countries) {
+import { Country } from '../types';
+
+export function getRandomCountries(countries: Country[]) {
   const totalCountries = countries.length;
-  const randomCountries = [];
-  let uniqueNumbers = [];
+  const randomCountries: Country[] = [];
+  let uniqueNumbers: number[] = [];
 
   while (uniqueNumbers.length < 4) {
     const randomNumbers = generateRandomNumbers(totalCountries);
-    uniqueNumbers = [...new Set(randomNumbers)];
+    uniqueNumbers = [...randomNumbers];
   }
 
   for (let num of uniqueNumbers) {
@@ -15,12 +17,12 @@ export function getRandomCountries(countries) {
   return randomCountries;
 }
 
-export function generateAnswer(countries) {
+export function generateAnswer(countries: Country[]) {
   const num = Math.floor(Math.random() * 4);
   return countries[num];
 }
 
-function generateRandomNumbers(numMax) {
+function generateRandomNumbers(numMax: number) {
   const randomNumbers = [];
   for (let i = 0; i < 4; i++) {
     const num = Math.floor(Math.random() * numMax);

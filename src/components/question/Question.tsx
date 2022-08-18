@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 
 import styles from './Question.module.scss';
 
-import Option from 'components/option/Option';
-import { ReactComponent as AdventureImage } from 'assets/adventure.svg';
+import Option from '../option';
+// import { ReactComponent as AdventureImage } from '../../assets/adventure.svg';
+// import AdventureImage from "../../assets/adventure.svg";
+import { Country } from '../../types';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
-const Question = ({ options, answer, onValidateAnswer }) => {
-  const [isActiveButton, setIsActiveButton] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+interface Props {
+  options: Country[];
+  answer: Country | null;
+  onValidateAnswer: (selectedAnswer: Country | null) => void;
+}
 
-  const selectedOptionHandler = (selectedOption) => {
+const Question = ({ options, answer, onValidateAnswer }: Props) => {
+  const [isActiveButton, setIsActiveButton] = useState<boolean>(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<Country | null>(null);
+
+  const selectedOptionHandler = (selectedOption: Country | null) => {
     if (!isActiveButton) {
       setIsActiveButton(true);
       setSelectedAnswer(selectedOption);
@@ -55,7 +63,8 @@ const Question = ({ options, answer, onValidateAnswer }) => {
       </button>
 
       <picture className={styles.card__image}>
-        <AdventureImage />
+        {/* <AdventureImage /> */}
+        Image
       </picture>
     </section>
   );
