@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-import Result from 'components/result/Result';
-import Question from 'components/question/Question';
+import Result from '../result';
+import Question from '../question';
 
-import { getRandomCountries, generateAnswer } from 'helpers/quiz';
+import { Country } from '../../types';
+import { getRandomCountries, generateAnswer } from '../../helpers/quiz';
 
-const Game = ({ countries }) => {
-  const [options, setOptions] = useState([]);
-  const [answer, setAnswer] = useState({});
-  const [answerCounter, setAnswerCounter] = useState(0);
-  const [endGame, setEndGame] = useState(false);
+interface Props {
+  countries: Country[];
+}
+
+const Game = ({ countries }: Props) => {
+  const [options, setOptions] = useState<Country[]>([]);
+  const [answer, setAnswer] = useState<Country | null>(null);
+  const [answerCounter, setAnswerCounter] = useState<number>(0);
+  const [endGame, setEndGame] = useState<boolean>(false);
 
   useEffect(() => {
     setOptions(getRandomCountries([...countries]));
@@ -23,8 +28,8 @@ const Game = ({ countries }) => {
     setOptions(getRandomCountries([...countries]));
   };
 
-  const handlerSelectedOption = (selectedAnswer) => {
-    if (selectedAnswer.country === answer.country) {
+  const handlerSelectedOption = (selectedAnswer: Country | null) => {
+    if (selectedAnswer?.country === answer?.country) {
       setAnswerCounter((prevState) => prevState + 1);
       generateNewQuestion();
     } else {

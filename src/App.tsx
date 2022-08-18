@@ -1,24 +1,27 @@
 import { useState, useEffect } from 'react';
 
-import Game from './components/game/Game';
+import Game from './components/game';
 import styles from './App.module.scss';
 
+import { Country } from './types';
+
 function App() {
-  const [countries, setCountries] = useState(null);
+  const [countries, setCountries] = useState<Country[]>([]);
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
       .then((response) => response.json())
       .then((responseData) => {
-        const transformedCountries = responseData
-          .filter((country) => country.capital)
-          .map((country) => {
+        const transformedCountries: Country[] = responseData
+          .filter((country: any) => country.capital)
+          .map((country: any) => {
             const { capital, flags, name } = country;
-            return {
+            let tempCountry: Country = {
               country: name.common,
               capital,
               flags,
             };
+            return tempCountry;
           });
         setCountries(transformedCountries);
       })
@@ -30,7 +33,7 @@ function App() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        {!countries ? (
+        {!countries.length ? (
           <p className={styles.container__loading}>Loading...</p>
         ) : (
           <>

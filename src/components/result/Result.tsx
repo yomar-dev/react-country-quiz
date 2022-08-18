@@ -1,10 +1,14 @@
 import React from 'react';
 
 import styles from './Result.module.scss';
+import { ReactComponent as WinnersImage } from '../../assets/winners.svg';
 
-import { ReactComponent as WinnersImage } from 'assets/winners.svg';
+interface Props {
+  score: number;
+  onResetGame: () => void;
+}
 
-const Result = ({ score, onResetGame }) => {
+const Result = ({ score, onResetGame }: Props) => {
   return (
     <section className={styles.card}>
       <picture className={styles.card__image}>
