@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import styles from './Question.module.scss';
 
 import Option from '../option';
-// import { ReactComponent as AdventureImage } from '../../assets/adventure.svg';
-// import AdventureImage from "../../assets/adventure.svg";
 import { Country } from '../../types';
+import { ReactComponent as AdventureImage } from '../../assets/adventure.svg';
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -63,8 +62,7 @@ const Question = ({ options, answer, onValidateAnswer }: Props) => {
       </button>
 
       <picture className={styles.card__image}>
-        {/* <AdventureImage /> */}
-        Image
+        <AdventureImage />
       </picture>
     </section>
   );
