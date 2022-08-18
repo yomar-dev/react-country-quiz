@@ -7,6 +7,7 @@ export function getRandomCountries(countries: Country[]) {
 
   while (uniqueNumbers.length < 4) {
     const randomNumbers = generateRandomNumbers(totalCountries);
+    // TODO: create unique numbers to avoid duplicated questions
     uniqueNumbers = [...randomNumbers];
   }
 
